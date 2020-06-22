@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import AuthProvider from "./providers/AuthProvider";
 import { BrowserRouter } from "react-router-dom";
-import "semantic-ui-react/semantic.min.css";
+import "semantic-ui-css/semantic.min.css";
 
 ReactDOM.render(
   <AuthProvider>
