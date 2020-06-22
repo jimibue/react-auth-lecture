@@ -6,19 +6,22 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import FetchUser from "./components/FetchUser";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <>
       <Navbar />
-
-      <Container>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
-      </Container>
+      <FetchUser>
+        <Container>
+          <Switch>
+            <ProtectedRoute exact path="/" component={Home} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </Container>
+      </FetchUser>
     </>
   );
 }

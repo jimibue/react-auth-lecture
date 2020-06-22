@@ -39,11 +39,17 @@ export default class AuthProvider extends React.Component {
         history.push("/");
       })
       .catch((e) => {
-        debugger;
+        alert("Invalid login attempt");
       });
   };
 
-  handleLogout = (history) => {};
+  handleLogout = (history) => {
+    axios.delete("/api/auth/sign_out").then((res) => {
+      console.log(res);
+      this.setState({ user: null });
+      history.push("/login");
+    });
+  };
 
   render() {
     return (
