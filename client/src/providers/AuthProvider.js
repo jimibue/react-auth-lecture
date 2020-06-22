@@ -31,7 +31,17 @@ export default class AuthProvider extends React.Component {
     // then I want redirect/go to home page on successful register
   };
 
-  handleLogin = (user, history) => {};
+  handleLogin = (user, history) => {
+    axios
+      .post("/api/auth/sign_in", user)
+      .then((res) => {
+        this.setState({ user: res.data.data });
+        history.push("/");
+      })
+      .catch((e) => {
+        debugger;
+      });
+  };
 
   handleLogout = (history) => {};
 

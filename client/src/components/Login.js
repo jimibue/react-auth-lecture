@@ -1,41 +1,31 @@
 import React from "react";
-
-import { Button, Form, Segment, Header } from "semantic-ui-react";
 import { AuthConsumer } from "../providers/AuthProvider";
+import { Button, Form, Segment, Header } from "semantic-ui-react";
 
-class Register extends React.Component {
-  state = { email: "", password: "", passwordConfirmation: "" };
+class Login extends React.Component {
+  state = { email: "", password: "" };
 
   handleSubmit = (e) => {
-    console.log("submit called");
-    const {
-      auth: { handleRegister },
-      history,
-    } = this.props;
-    if (this.state.password !== this.state.passwordConfirmation) {
-      alert("passwords don't match");
-      return;
-    }
-    handleRegister({ ...this.state }, history);
+    this.props.auth.handleLogin({ ...this.state }, this.props.history);
   };
 
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-  render() {
-    const { email, password, passwordConfirmation } = this.state;
 
+  render() {
+    const { email, password } = this.state;
     return (
       <Segment basic>
         <Header as="h1" textAlign="center">
-          Register
+          Login
         </Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
             label="Email"
-            required
             autoFocus
+            required
             name="email"
             value={email}
             placeholder="Email"
@@ -50,15 +40,6 @@ class Register extends React.Component {
             type="password"
             onChange={this.handleChange}
           />
-          <Form.Input
-            label="Password Confirmation"
-            required
-            name="passwordConfirmation"
-            value={passwordConfirmation}
-            placeholder="Password Confirmation"
-            type="password"
-            onChange={this.handleChange}
-          />
           <Segment textAlign="center" basic>
             <Button primary type="submit">
               Submit
@@ -70,11 +51,11 @@ class Register extends React.Component {
   }
 }
 
-export default class ConnectedRegister extends React.Component {
+export default class ConnectedLogin extends React.Component {
   render() {
     return (
       <AuthConsumer>
-        {(val) => <Register {...this.props} auth={val} />}
+        {(auth) => <Login {...this.props} auth={auth} />}
       </AuthConsumer>
     );
   }
