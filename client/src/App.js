@@ -8,6 +8,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import FetchUser from "./components/FetchUser";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MyCats from "./components/MyCats";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Container>
           <Switch>
             <ProtectedRoute exact path="/" component={Home} />
+            <ProtectedRoute exact path="/my_cats" component={MyCats} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
           </Switch>
