@@ -26,6 +26,7 @@ export default class AuthProvider extends React.Component {
       })
       .catch((err) => {
         console.log(err);
+        alert("Invalid login attempt");
       });
 
     // then I want redirect/go to home page on successful register
@@ -39,16 +40,22 @@ export default class AuthProvider extends React.Component {
         history.push("/");
       })
       .catch((e) => {
+        console.log(e);
         alert("Invalid login attempt");
       });
   };
 
   handleLogout = (history) => {
-    axios.delete("/api/auth/sign_out").then((res) => {
-      console.log(res);
-      this.setState({ user: null });
-      history.push("/login");
-    });
+    axios
+      .delete("/api/auth/sign_out")
+      .then((res) => {
+        console.log(res);
+        this.setState({ user: null });
+        history.push("/login");
+      })
+      .catch((err) => {
+        alert("Logout failed");
+      });
   };
 
   render() {

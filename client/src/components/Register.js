@@ -35,6 +35,8 @@ class Register extends React.Component {
           <Form.Input
             label="Email"
             required
+            // pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+            type="email"
             autoFocus
             name="email"
             value={email}
@@ -44,6 +46,7 @@ class Register extends React.Component {
           <Form.Input
             label="Password"
             required
+            minLength={8}
             name="password"
             value={password}
             placeholder="Password"
@@ -53,6 +56,7 @@ class Register extends React.Component {
           <Form.Input
             label="Password Confirmation"
             required
+            minLength={8}
             name="passwordConfirmation"
             value={passwordConfirmation}
             placeholder="Password Confirmation"
