@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   serialize :liked_cats, Array
+  has_many :posts
 
   def self.random_cat(ids)
     ids = ids.empty? ? [0] : ids

@@ -7,11 +7,15 @@ export default function FetchUser(props) {
   const [loaded, setLoaded] = useState(false);
   const { authenticated, setUser } = useContext(AuthContext);
 
-  useEffect(async () => {
-    if (!authenticated) {
-      await checkLocalToken();
+  useEffect(() => {
+    console.log("called");
+    async function checkUser() {
+      if (!authenticated) {
+        await checkLocalToken();
+      }
+      setLoaded(true);
     }
-    setLoaded(true);
+    checkUser();
   }, []);
 
   async function checkLocalToken() {
