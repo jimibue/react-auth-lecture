@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import ProblemForm from "./ProblemForm";
 import Axios from "axios";
 
 // This Demo should maybe called Problems
@@ -31,6 +32,14 @@ export default function Demo(props) {
     // setUsersProblems(usersProblems.filter((x) => x.id !== problemId));
     setUsersProblems(usersProblems.filter((x) => x.id !== res.data.id));
   }
+
+  function handleEdit(thingThatWasEdit) {
+    console.log(thingThatWasEdit);
+  }
+  function handleAdd(thingThatWasAdded) {
+    console.log(thingThatWasAdded);
+  }
+
   return (
     <div>
       <h1>Demo</h1>
@@ -51,11 +60,22 @@ export default function Demo(props) {
         <div>
           {u.email}-{u.question}
           {currentUser.id === u.user_id && (
-            <span onClick={() => handleDelete(u.id)}>&nbsp; delete</span>
+            <>
+              <span onClick={() => handleDelete(u.id)}>&nbsp; delete</span>
+              <ProblemForm
+                // {...u}
+                answer={u.answer}
+                question={u.question}
+                id={u.id}
+                edit={handleEdit}
+              />
+            </>
           )}
         </div>
       ))}
       <hr />
+      <h3>add new problem</h3>
+      <ProblemForm add={handleAdd} />
     </div>
   );
 }
