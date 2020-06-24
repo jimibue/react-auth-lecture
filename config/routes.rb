@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :problems
     get "custom_problems_yo", to: "problems#yoyoyo"
     get "users", to: "problems#users"
+    get "users_problems", to: "problems#users_problems"
+    get "current_user_get", to: "problems#current_user_get"
   end
   get "custom_problems_but_api_not_one", to: "problems#no_api"
 end
