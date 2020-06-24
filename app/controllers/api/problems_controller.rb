@@ -1,5 +1,5 @@
 class Api::ProblemsController < ApplicationController
-  before_action :authenticate_user!, only: [:current_user_get]
+  before_action :authenticate_user!, only: [:current_user_get, :destroy]
 
   def current_user_get
     render json: current_user
@@ -10,11 +10,22 @@ class Api::ProblemsController < ApplicationController
   end
 
   def users_problems
+    # render json: User.joins(:problems)
     render json: User.find_by_sql("
-      SELECT email, question, answer FROM users
+      SELECT problems.id, user_id, email, question, answer FROM users
       INNER JOIN problems ON users.id = problems.user_id
       ORDER BY users.created_at desc
     ")
+  end
+
+  def destroy
+    render json: current_user.problems.find(params[:id]).destroy
+  end
+
+  def delete_problem
+    # why do we want to delete with current_user
+    # User.first.problems.destroy(6) #won't work
+    # Problem.find(6).destroy() #will work
   end
 
   # find a user with a given id

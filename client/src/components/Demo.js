@@ -26,6 +26,11 @@ export default function Demo(props) {
       console.log(err);
     }
   }
+  async function handleDelete(problemId) {
+    const res = await Axios.delete(`/api/problems/${problemId}`);
+    // setUsersProblems(usersProblems.filter((x) => x.id !== problemId));
+    setUsersProblems(usersProblems.filter((x) => x.id !== res.data.id));
+  }
   return (
     <div>
       <h1>Demo</h1>
@@ -45,6 +50,9 @@ export default function Demo(props) {
       {usersProblems.map((u) => (
         <div>
           {u.email}-{u.question}
+          {currentUser.id === u.user_id && (
+            <span onClick={() => handleDelete(u.id)}>&nbsp; delete</span>
+          )}
         </div>
       ))}
       <hr />
