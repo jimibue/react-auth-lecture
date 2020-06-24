@@ -11,6 +11,20 @@ class User < ActiveRecord::Base
   serialize :liked_cats, Array
   has_many :posts
 
+  # setup follower/followees
+  has_many :followed_users, foreign_key: :follower_id, class_name: "Follow"
+  has_many :followees, through: :followed_users
+
+  has_many :following_users, foreign_key: :followee_id, class_name: "Follow"
+  has_many :followers, through: :following_users
+
+  # setup friendships
+  has_and_belongs_to_many :friendships,
+                          class_name: "User",
+                          join_table: :friendships,
+                          foreign_key: :user_id,
+                          association_foreign_key: :friend_user_id
+
   def self.random_cat(ids)
     ids = ids.empty? ? [0] : ids
     Cat.where("id NOT in (?)", ids).order("RANDOM()")
