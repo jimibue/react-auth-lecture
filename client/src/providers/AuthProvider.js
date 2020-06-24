@@ -32,6 +32,10 @@ export default class AuthProvider extends React.Component {
     // then I want redirect/go to home page on successful register
   };
 
+  // define handle login, I define this once
+  // i can call it as many times as I want but I am expecting to becalled
+  // with the first param as a object {email:'', password}
+  // second param is react route dom history object
   handleLogin = (user, history) => {
     axios
       .post("/api/auth/sign_in", user)

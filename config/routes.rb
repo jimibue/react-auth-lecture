@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     get "all_users", to: "cats#all_users"
     get "get_current_user", to: "cats#get_current_user"
     get "users_and_posts", to: "cats#users_and_posts"
+    resources :problems
+    get "custom_problems_yo", to: "problems#yoyoyo"
+    get "users", to: "problems#users"
   end
+  get "custom_problems_but_api_not_one", to: "problems#no_api"
 end

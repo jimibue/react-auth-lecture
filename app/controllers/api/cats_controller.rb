@@ -2,6 +2,8 @@ class Api::CatsController < ApplicationController
   # before_action :authenticate_user!,
   before_action :authenticate_user!, only: [:index, :update]
 
+  # get /api/cat - returns logged in users cats minus the cats
+  # that user liked
   def index
     render json: User.random_cat(current_user.liked_cats)
   end

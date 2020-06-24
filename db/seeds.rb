@@ -20,4 +20,8 @@
   5.times do |j|
     user.posts.create(title: "post-#{j}")
   end
+
+  user.problems.create(question: "what is 1+ 1", answer: 2)
+  user.problems.create(question: "what is 3 + 1", answer: 4)
+  user.problems.create(question: "what is 2 + 1", answer: 3)
 end

@@ -47,6 +47,20 @@ const Navbar = (props) => {
             active={props.location.path === "/"}
           />
         </Link>
+        <Link to="/demo">
+          <Menu.Item
+            name="demo"
+            id="demo"
+            active={props.location.path === "/demo"}
+          />
+        </Link>
+        <Link to="/bannana">
+          <Menu.Item
+            name="yoyo"
+            id="someID"
+            active={props.location.path === "/bannana"}
+          />
+        </Link>
         {rightNavItems()}
       </Menu>
     </div>

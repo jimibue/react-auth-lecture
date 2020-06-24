@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
                           foreign_key: :user_id,
                           association_foreign_key: :friend_user_id
 
+  ## problem
+  has_many :problems
+
   def self.random_cat(ids)
     ids = ids.empty? ? [0] : ids
     Cat.where("id NOT in (?)", ids).order("RANDOM()")

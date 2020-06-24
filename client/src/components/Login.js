@@ -7,8 +7,8 @@ export default function Login(props) {
   function handleSubmit(e) {
     handleLogin({ email, password }, props.history);
   }
-  const [email, setEmail] = useState("default");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test1@t.com");
+  const [password, setPassword] = useState("12345678");
   return (
     <Segment basic>
       <Header as="h1" textAlign="center">
